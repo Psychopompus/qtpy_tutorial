@@ -1,19 +1,15 @@
 from PyQt5.QtWidgets import (QApplication, QWidget,     # 애플리케이션 핸들러와 빈 GUI 위젯
                              QPushButton, QVBoxLayout,
-                             QMessageBox, QPlainTextEdit, QHBoxLayout, QLabel)
+                             QMessageBox, QPlainTextEdit, QHBoxLayout)
 
 from PyQt5.QtGui import QIcon                           # icon을 추가하기 위한 라이브러리
-from PyQt5.QtCore import QDate, Qt # 날짜와 주요 속성 값 사용을 위해 추가
 
 class View(QWidget):
     def __init__(self):
         super().__init__()  # 부모 클래스 QWidget을 초기화
-        self.date = QDate.currentDate()     # 현재 날짜를 저장하기 위해 추가
         self.initUI()       # 나머지 초기화는 initUI함수에 정의
 
     def initUI(self):
-        self.lbl1 = QLabel(self.date.toString(Qt.DefaultLocaleLongDate), self)
-
         self.te1 = QPlainTextEdit()     # 텟스트 에디트 위젯 생성
         self.te1.setReadOnly(True)      # 텍스트 에디트 위젯을 읽기만 가능하도록 수정
 
@@ -28,8 +24,7 @@ class View(QWidget):
         vbox = QVBoxLayout()        # 수직 레이아웃 위젯 생성
         vbox.addWidget(self.te1)    # 수직 레이아웃에 텍스트 에디트 위젯 추가
         vbox.addLayout(hbox)        # btn1 위치에 hbox를 배치
-        vbox.addWidget(self.lbl1)
-        #vbox.addStretch(1)          # 빈 공간
+        vbox.addStretch(1)          # 빈 공간
 
         self.setLayout(vbox)        # 빈 공간 - 버튼 - 빈 공간 순으로 수직 배치된 레이아웃 설정
 
