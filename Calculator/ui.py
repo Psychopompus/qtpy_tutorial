@@ -17,6 +17,8 @@ class View(QWidget):
 
         self.le1=QLineEdit('0', self)
         self.le1.setAlignment(Qt.AlignRight)
+        self.le1.setFocus(True)         # 포커스 설정
+        self.le1.selectAll()            # 텍스트 전체 선택
 
         self.le2=QLineEdit('0', self)
         self.le2.setAlignment(Qt.AlignRight)
@@ -29,7 +31,7 @@ class View(QWidget):
         hbox_fomular.addWidget(self.cb)
         hbox_fomular.addWidget(self.le2)
 
-        self.btn1 = QPushButton('Message', self)        # 버튼 추가
+        self.btn1 = QPushButton('Calc', self)        # 버튼 이름 변경
         self.btn2 = QPushButton('Clear', self)          # 버튼2 추가
 
         hbox = QHBoxLayout()
@@ -50,7 +52,7 @@ class View(QWidget):
         self.resize(256,256)                    # 윈도우 사이즈
         self.show()                             # 윈도우 화면이 표시되도록 호출
 
-    def activateWindow(self):           # 버튼을 클릭할 때 동작하는 함수 : 메시지 박스 출력
+    def setDisplay(self):           # 버튼을 클릭할 때 동작하는 함수 : 메시지 박스 출력
         self.te1.appendPlainText("Button clicked!")
 
     def clearWindow(self):
