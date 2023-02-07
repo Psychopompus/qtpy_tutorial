@@ -1,8 +1,10 @@
 from PyQt5.QtWidgets import (QApplication, QWidget,     # 애플리케이션 핸들러와 빈 GUI 위젯
                              QPushButton, QVBoxLayout,
-                             QMessageBox, QPlainTextEdit, QHBoxLayout)
+                             QMessageBox, QPlainTextEdit, QHBoxLayout,
+                             QLineEdit, QComboBox)
 
 from PyQt5.QtGui import QIcon                           # icon을 추가하기 위한 라이브러리
+from PyQt5.QtCore import Qt
 
 class View(QWidget):
     def __init__(self):
@@ -12,6 +14,20 @@ class View(QWidget):
     def initUI(self):
         self.te1 = QPlainTextEdit()     # 텟스트 에디트 위젯 생성
         self.te1.setReadOnly(True)      # 텍스트 에디트 위젯을 읽기만 가능하도록 수정
+
+        self.le1=QLineEdit('0', self)
+        self.le1.setAlignment(Qt.AlignRight)
+
+        self.le2=QLineEdit('0', self)
+        self.le2.setAlignment(Qt.AlignRight)
+
+        self.cb=QComboBox(self)
+        self.cb.addItems(['+', '-', '*', '/'])
+
+        hbox_fomular = QHBoxLayout()
+        hbox_fomular.addWidget(self.le1)
+        hbox_fomular.addWidget(self.cb)
+        hbox_fomular.addWidget(self.le2)
 
         self.btn1 = QPushButton('Message', self)        # 버튼 추가
         self.btn2 = QPushButton('Clear', self)          # 버튼2 추가
@@ -23,6 +39,7 @@ class View(QWidget):
 
         vbox = QVBoxLayout()        # 수직 레이아웃 위젯 생성
         vbox.addWidget(self.te1)    # 수직 레이아웃에 텍스트 에디트 위젯 추가
+        vbox.addLayout(hbox_fomular)
         vbox.addLayout(hbox)        # btn1 위치에 hbox를 배치
         vbox.addStretch(1)          # 빈 공간
 
