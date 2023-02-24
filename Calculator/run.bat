@@ -1,0 +1,1 @@
+pyinstaller -y -F -w main.py --hidden-import=PyQt5, --hidden-import=pymysql, --hidden-import=json -n ARBV.exe
